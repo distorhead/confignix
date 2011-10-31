@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/distorhead/soft/STM32F10x_StdPeriph_Lib_V3.5.0'
+let g:netrw_dirhist_2='/home/distorhead/documents/hardware/terra_stm32/Demo program'
+let g:netrw_dirhist_3='/home/distorhead/soft/freertos-7.0.2'
+let g:netrw_dirhist_4='/home/distorhead/soft/baremetal'
+let g:netrw_dirhist_5='/usr/lib/python2.6/dist-packages/orange'
+let g:netrw_dirhist_6='/home/distorhead/.xmonad'
+let g:netrw_dirhist_7='/home/distorhead/soft/redmine_free_mind'
