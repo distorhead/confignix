@@ -1,0 +1,21 @@
+Installed plugins & colorschemes. Get more info online.
+
+-- a.vim
+A few of quick commands to swtich between source files and header files quickly. 
+
+-- NERD_commenter
+Surprisingly, it is commenter.
+
+-- NERD_tree
+Improved tree directories structure view mode.
+
+-- netrw
+Netrw supports reading and writing files across networks.
+Convenient way to edit files over ssh, for example, instead of
+    running vim on weak remote machine (little arm board or smth).
+
+-- ultisnips
+TextMate-like snippets in vim.
+
+-- zenburn
+Cool colorscheme.

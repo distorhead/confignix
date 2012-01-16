@@ -1,0 +1,57 @@
+snippet date "Current date"
+`date +%d.%m.%y`
+endsnippet
+
+snippet indent "" i
+Indent is: `!v indent(".")`.
+endsnippet
+
+snippet today "" i
+Today is `#!/usr/bin/env perl
+@a = localtime(); print $a[3] . '.' . $a[4] . '.' . ($a[5]+1900);`.
+endsnippet
+
+snippet wow
+${1:Text}`!p snip.rv = (75 - 2*len(t[1]))*' ' + t[1].upper()`
+endsnippet
+
+global !p
+def upper_right(inp):
+    return (75 - 2 * len(inp)) * ' ' + inp.upper()
+endglobal
+
+snippet wow2
+${1:texttexttext}`!p snip.rv = upper_right(t[1])`
+endsnippet
+
+snippet jump
+I $1. I was a $2.
+$0
+endsnippet
+
+snippet a
+<a href="$1"${2: class="${3:link}"}>
+    $0
+</a>
+endsnippet
+
+snippet env
+\begin{${1:enumerate}}
+    $0
+\end{$1}
+endsnippet
+
+snippet title
+${1:a text}
+${1/\w/123/}
+$0
+endsnippet
+
+snippet title
+${1:a text}
+${1/\w+\s*/\u$0/g}
+endsnippet
+
+snippet printf
+printf("${1:%s}\n"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/})
+endsnippet
