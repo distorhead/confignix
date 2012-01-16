@@ -8,6 +8,9 @@ set hlsearch
 set incsearch
 set ignorecase
 
+set nobackup
+set nowritebackup
+
 set lz
 
 set number
