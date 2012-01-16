@@ -1,4 +1,18 @@
-Installed plugins & colorschemes. Get more info online.
+Keymaps
+-------
+-- my-russian.vim
+Just one little change:
+$ diff -u1 /usr/share/vim/vim73/keymap/russian-jcukenwin.vim keymap/my-russian.vim 
+--- /usr/share/vim/vim73/keymap/russian-jcukenwin.vim   2011-10-06 14:22:29.000000000 +0400
++++ keymap/my-russian.vim   2012-01-16 13:52:32.094719316 +0400
+@@ -87 +87,2 @@
+ ?  ,
++|  /
+
+
+Plugins
+-------
+Installed plugins. Get more info online.
 
 -- a.vim
 A few of quick commands to swtich between source files and header files quickly. 
@@ -17,5 +31,8 @@ Convenient way to edit files over ssh, for example, instead of
 -- ultisnips
 TextMate-like snippets in vim.
 
+
+Colorschemes
+------------
 -- zenburn
 Cool colorscheme.
