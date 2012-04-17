@@ -13,7 +13,7 @@ set nowritebackup
 
 set lz
 
-set number
+"set number
 
 " Tabulation settings {
 set softtabstop=4
@@ -24,8 +24,6 @@ set expandtab
 "syntax match Tab /\t/
 "hi Tab gui=underline guifg=blue ctermbg=blue
 " } Tabulation settings
-
-colorscheme desert
 
 set nopaste
 
