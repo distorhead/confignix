@@ -1,57 +1,79 @@
-snippet date "Current date"
-`date +%d.%m.%y`
-endsnippet
+# This file contains snippets that are always defined. I personally
+# have snippets for signatures and often needed texts
 
-snippet indent "" i
-Indent is: `!v indent(".")`.
-endsnippet
-
-snippet today "" i
-Today is `#!/usr/bin/env perl
-@a = localtime(); print $a[3] . '.' . $a[4] . '.' . ($a[5]+1900);`.
-endsnippet
-
-snippet wow
-${1:Text}`!p snip.rv = (75 - 2*len(t[1]))*' ' + t[1].upper()`
-endsnippet
-
+##############
+# NICE BOXES #
+##############
 global !p
-def upper_right(inp):
-    return (75 - 2 * len(inp)) * ' ' + inp.upper()
+import string, vim
+def _parse_comments(s):
+    i = iter(s.split(","))
+
+    rv = []
+    try:
+        while True:
+            n = i.next()
+            if n[0] == 's':
+                ctriple = []
+                indent = ""
+                if n[1] in string.digits:
+                    indent = " " * int(n[1])
+                ctriple.append(n.split(":",1)[1])
+                n = i.next()
+                assert(n[0] == 'm')
+                ctriple.append(n.split(":",1)[1])
+                n = i.next()
+                assert(n[0] == 'e')
+                ctriple.append(n.split(":",1)[1])
+                ctriple.append(indent)
+                rv.append(ctriple)
+            elif n[0] == 'b':
+                cm = n.split(":", 1)[1]
+                if len(cm) == 1:
+                    rv.insert(0, (cm,cm,cm, ""))
+    except StopIteration:
+       return rv
+
+def make_box(twidth, bwidth = None):
+   if bwidth is None:
+      bwidth = twidth + 2
+   b,m,e,i = _parse_comments(vim.eval("&comments"))[0]
+   sline = b + m + bwidth*m + 2*m
+   nspaces = (bwidth - twidth)//2 
+   mlines = i + m + " " + " "*nspaces
+   mlinee = " " + " "*(bwidth-twidth-nspaces) + m
+   eline = i + 2*m + bwidth*m + m + e
+   return sline, mlines, mlinee, eline
 endglobal
 
-snippet wow2
-${1:texttexttext}`!p snip.rv = upper_right(t[1])`
-endsnippet
-
-snippet jump
-I $1. I was a $2.
+snippet box "A nice box with the current comment symbol" b
+`!p
+box = make_box(len(t[1]))
+snip.rv = box[0] + '\n' + box[1]
+`${1:content}`!p
+box = make_box(len(t[1]))
+snip.rv = box[2] + '\n' + box[3]`
 $0
 endsnippet
 
-snippet a
-<a href="$1"${2: class="${3:link}"}>
-    $0
-</a>
-endsnippet
-
-snippet env
-\begin{${1:enumerate}}
-    $0
-\end{$1}
-endsnippet
-
-snippet title
-${1:a text}
-${1/\w/123/}
+snippet bbox "A nice box over the full width" b
+`!p
+box = make_box(len(t[1]), 71)
+snip.rv = box[0] + '\n' + box[1]
+`${1:content}`!p
+box = make_box(len(t[1]), 71)
+snip.rv = box[2] + '\n' + box[3]`
 $0
 endsnippet
 
-snippet title
-${1:a text}
-${1/\w+\s*/\u$0/g}
+##########################
+# LOREM IPSUM GENERATORS #
+##########################
+snippet lorem "Lorem Ipsum - 50 Words" b
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+no sea takimata sanctus est Lorem ipsum dolor sit amet.
 endsnippet
 
-snippet printf
-printf("${1:%s}\n"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/})
-endsnippet
+# vim:ft=snippets:
