@@ -2,7 +2,6 @@ set nocompatible
 set wrap
 set linebreak
 set nolist
-
 set showmatch
 set hlsearch
 set incsearch
@@ -75,3 +74,6 @@ nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
 " } Key mappings
 
 set runtimepath+=~/.vim/ultisnips_rep
+
+set showcmd
+set visualbell
