@@ -51,6 +51,7 @@
 :Pexplore	pi_netrw.txt	/*:Pexplore*
 :Rexplore	pi_netrw.txt	/*:Rexplore*
 :Sexplore	pi_netrw.txt	/*:Sexplore*
+:SpeedDatingFormat	speeddating.txt	/*:SpeedDatingFormat*
 :Texplore	pi_netrw.txt	/*:Texplore*
 :Vexplore	pi_netrw.txt	/*:Vexplore*
 AN	a.txt	/*AN*
@@ -505,4 +506,17 @@ rsync	pi_netrw.txt	/*rsync*
 s:netrw_passwd	pi_netrw.txt	/*s:netrw_passwd*
 scp	pi_netrw.txt	/*scp*
 sftp	pi_netrw.txt	/*sftp*
+speeddating	speeddating.txt	/*speeddating*
+speeddating-.	speeddating.txt	/*speeddating-.*
+speeddating-CTRL-A	speeddating.txt	/*speeddating-CTRL-A*
+speeddating-CTRL-X	speeddating.txt	/*speeddating-CTRL-X*
+speeddating-author	speeddating.txt	/*speeddating-author*
+speeddating-caveats	speeddating.txt	/*speeddating-caveats*
+speeddating-d_CTRL-A	speeddating.txt	/*speeddating-d_CTRL-A*
+speeddating-d_CTRL-X	speeddating.txt	/*speeddating-d_CTRL-X*
+speeddating-formats	speeddating.txt	/*speeddating-formats*
+speeddating-maps	speeddating.txt	/*speeddating-maps*
+speeddating-v_CTRL-A	speeddating.txt	/*speeddating-v_CTRL-A*
+speeddating-v_CTRL-X	speeddating.txt	/*speeddating-v_CTRL-X*
+speeddating.vim	speeddating.txt	/*speeddating.vim*
 vim-orgmode	orgguide.txt	/*vim-orgmode*
