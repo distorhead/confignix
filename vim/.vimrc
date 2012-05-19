@@ -37,7 +37,6 @@ set imsearch=0
 highlight lCursor guifg=White guibg=Black
 highlight Cursor  guifg=White guibg=Black
 
-set nocp
 filetype on
 filetype plugin on
 
@@ -58,7 +57,7 @@ map <F6> @
 map <F3> <ESC>:nohlsearch<CR>
 map <F12> <ESC>:!<CR>
 nmap <C-V> "+gp
-imap <C-V> <ESC><C-V>a
+imap <C-V> <ESC><C-V>i
 vmap <C-C> "+y
 vmap <C-X> "+d
 
