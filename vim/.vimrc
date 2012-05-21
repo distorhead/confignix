@@ -13,8 +13,6 @@ set lz
 set nopaste
 set ai
 set cin
-set iminsert=0
-set imsearch=0
 set spelllang=ru_ru,en_us
 set mouse=a
 set encoding=utf-8
@@ -32,8 +30,10 @@ set expandtab
 " } Tabulation
 
 " Keymap {
-" default: set keymap=russian-jcukenwin
+"set keymap=russian-jcukenwin
 set keymap=my-russian
+set iminsert=0
+set imsearch=0
 " } Keymap
 
 highlight lCursor guifg=White guibg=Black
