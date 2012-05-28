@@ -9,7 +9,6 @@ set ignorecase
 set nobackup
 set nowritebackup
 set lz
-"set number
 set nopaste
 set ai
 set cin
@@ -20,7 +19,6 @@ set fileencodings=utf8,cp1251,koi8-r
 set clipboard=unnamed
 set pastetoggle=<F2>
 set showcmd
-set visualbell
 
 " Tabulation {
 set softtabstop=4
@@ -51,9 +49,11 @@ map <F6> @
 map <F3> <ESC>:nohlsearch<CR>
 map <F12> <ESC>:!<CR>
 nmap <C-V> "+gp
-imap <C-V> <ESC><C-V>i
+imap <C-V> <ESC><C-V>a
 vmap <C-C> "+y
 vmap <C-X> "+d
+" schedule notifies with line
+nmap <C-X>s ^"cy$:!echo 'notify-send "<C-R>c"' \| at 
 " toggle language
 imap <C-L> <C-^>
 "Toggle spell check
@@ -67,3 +67,4 @@ map <C-K><C-G> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 " Runtime path {
 set runtimepath+=~/.vim/ultisnips_rep
 " } Runtime path
+" TODO: write function, that resize current buffer to its factual size
