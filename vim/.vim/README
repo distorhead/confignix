@@ -18,7 +18,6 @@ Installed plugins. Get more info online.
 A few of quick commands to swtich between source files and header files quickly. 
 
 -- NERD_commenter
-Surprisingly, it is commenter.
 
 -- NERD_tree
 Improved tree directories structure view mode.
@@ -31,8 +30,12 @@ Convenient way to edit files over ssh, for example, instead of
 -- ultisnips
 TextMate-like snippets in vim.
 
+-- speeddating
+
+-- OmniCppComplete
+
+-- pythoncomplete
 
 Colorschemes
 ------------
 -- zenburn
-Cool colorscheme.
