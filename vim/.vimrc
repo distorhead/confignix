@@ -61,17 +61,9 @@ map <C-K>s  :set spell<CR>
 map <C-K>ns :set nospell<CR>
 "Toggle cursor-at-center mode
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
-map <C-K><C-G> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-
-inoremap {      {}<Left>
-inoremap {{     {
-inoremap <expr> }  strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
+nnoremap <C-A>w :wall<CR>
+nnoremap <C-A>q :qall<CR>
 inoremap {<CR>  {<CR>}<Esc>O
-
-inoremap (      ()<Left>
-inoremap ((     (
-inoremap <expr> )  strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
-
 " } Key mappings
 
 " Runtime path {
