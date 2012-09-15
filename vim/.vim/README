@@ -27,7 +27,7 @@ Netrw supports reading and writing files across networks.
 Convenient way to edit files over ssh, for example, instead of
     running vim on weak remote machine (little arm board or smth).
 
--- ultisnips
+-- snipmate
 TextMate-like snippets in vim.
 
 -- speeddating
