@@ -19,6 +19,8 @@ set fileencodings=utf8,cp1251,koi8-r
 set clipboard=unnamed
 set pastetoggle=<F2>
 set showcmd
+set ruler
+set colorcolumn=88
 
 " Tabulation {
 set softtabstop=4
@@ -48,10 +50,6 @@ map <F5> q
 map <F6> @
 map <F3> <ESC>:nohlsearch<CR>
 map <F12> <ESC>:!<CR>
-nmap <C-V> "+gp
-imap <C-V> <ESC><C-V>a
-vmap <C-C> "+y
-vmap <C-X> "+d
 " schedule notifies with line
 nmap <C-X>s ^"cy$:!echo 'notify-send "<C-R>c"' \| at 
 " toggle language
@@ -63,11 +61,12 @@ map <C-K>ns :set nospell<CR>
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
 nnoremap <C-A>w :wall<CR>
 nnoremap <C-A>q :qall<CR>
+nnoremap * mw*`w
+nnoremap # mw#`w
 inoremap {<CR>  {<CR>}<Esc>O
 " } Key mappings
 
-" Runtime path {
-set runtimepath+=~/.vim/ultisnips_rep
-" } Runtime path
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
-" TODO: write function, that resize current buffer to its factual size
