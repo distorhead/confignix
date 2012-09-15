@@ -64,6 +64,9 @@ nnoremap <C-A>q :qall<CR>
 nnoremap * mw*`w
 nnoremap # mw#`w
 inoremap {<CR>  {<CR>}<Esc>O
+"Grep
+nmap <C-F7> :execute "vimgrep /" . expand("<cword>") . "/gj **" <CR>
+nmap <C-F8> :vimgrep //gj **/*<left><left><left><left><left><left><left><left>
 " } Key mappings
 
 if has("autocmd")
