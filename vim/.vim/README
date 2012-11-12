@@ -1,7 +1,5 @@
-Keymaps
--------
--- my-russian.vim
-Just one little change:
+* keymaps
+    * my-russian.vim
 $ diff -u1 /usr/share/vim/vim73/keymap/russian-jcukenwin.vim keymap/my-russian.vim 
 --- /usr/share/vim/vim73/keymap/russian-jcukenwin.vim   2011-10-06 14:22:29.000000000 +0400
 +++ keymap/my-russian.vim   2012-01-16 13:52:32.094719316 +0400
@@ -10,32 +8,12 @@ $ diff -u1 /usr/share/vim/vim73/keymap/russian-jcukenwin.vim keymap/my-russian.v
 +|  /
 
 
-Plugins
--------
-Installed plugins. Get more info online.
+* plugins
+    * a
+    * NERD_commenter
+    * NERD_tree
+    * snipMate
+    * netrw
 
--- a.vim
-A few of quick commands to swtich between source files and header files quickly. 
-
--- NERD_commenter
-
--- NERD_tree
-Improved tree directories structure view mode.
-
--- netrw
-Netrw supports reading and writing files across networks.
-Convenient way to edit files over ssh, for example, instead of
-    running vim on weak remote machine (little arm board or smth).
-
--- snipmate
-TextMate-like snippets in vim.
-
--- speeddating
-
--- OmniCppComplete
-
--- pythoncomplete
-
-Colorschemes
-------------
--- zenburn
+* colorschemes
+    * zenburn
