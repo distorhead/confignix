@@ -20,6 +20,7 @@ set pastetoggle=<F2>
 set showcmd
 set ruler
 set colorcolumn=88
+set noea
 
 " Tabulation {
 set softtabstop=4
@@ -59,14 +60,27 @@ nnoremap <C-A>q :qall<CR>
 nnoremap * mw*`w
 nnoremap # mw#`w
 inoremap {<CR>  {<CR>}<Esc>O
+nnoremap <F5> <C-W>2<
+nnoremap <F6> <C-W>2>
+nnoremap <F7> <C-W>2-
+nnoremap <F8> <C-W>2+
 "File ops
 nmap <C-F>g :vimgrep //gj **/*<left><left><left><left><left><left><left><left>
 nmap <C-F>f :new<bar>r !find ./ -iname '**'<left><left>
 nmap <C-F>o :e! <cfile><CR>
+"Tabulation switchers
+nmap <C-T>2 :call SetupTabulation(2)<CR>
+nmap <C-T>4 :call SetupTabulation(4)<CR>
 " } Key mappings
+
+function! SetupTabulation(size)
+    let &sts = a:size
+    let &ts = a:size
+    let &sw = a:size
+endfunction
 
 
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
