@@ -34,7 +34,8 @@ set imsearch=0
 
 highlight lCursor guifg=White guibg=Black
 highlight Cursor  guifg=White guibg=Black
-hi ColorColumn guibg=#d0d0d0 ctermbg=000
+highlight PmenuSel ctermbg=Gray ctermfg=Black
+highlight ColorColumn guibg=#d0d0d0 ctermbg=000
 
 syntax on
 filetype on
@@ -59,6 +60,7 @@ nnoremap <F8> <C-W>2+
 "Tabulation switchers
 nmap <C-T>2 :call SetupTabulation(2)<CR>
 nmap <C-T>4 :call SetupTabulation(4)<CR>
+nnoremap <C-K>o :FufFile **/<CR>
 
 
 if has("autocmd")
