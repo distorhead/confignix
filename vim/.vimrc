@@ -61,12 +61,24 @@ nmap <C-T>2 :call SetupTabulation(2)<CR>
 nmap <C-T>4 :call SetupTabulation(4)<CR>
 
 
+if has("autocmd")
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
 function! SetupTabulation(size)
     let &sts = a:size
     let &ts = a:size
     let &sw = a:size
 endfunction
 
-if has("autocmd")
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
+
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+Bundle 'gmarik/vundle'                                                                  
+Bundle 'scrooloose/nerdtree'                                                            
+Bundle 'scrooloose/nerdcommenter'                                                       
+Bundle 'a.vim'                                                                          
+Bundle 'netrw.vim'                                                                      
+Bundle 'L9'                                                                             
+Bundle 'FuzzyFinder'                                                                    
