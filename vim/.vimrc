@@ -21,6 +21,7 @@ set showcmd
 set ruler
 set colorcolumn=88
 set noea
+set mouse=a
 
 set softtabstop=4
 set tabstop=4
@@ -44,6 +45,7 @@ filetype plugin on
 
 let mapleader = ","
 
+nnoremap <C-W>N :vnew<CR>
 map <F3> <ESC>:nohlsearch<CR>
 map <F12> <ESC>:!<CR>
 "Toggle cursor-at-center mode
@@ -61,6 +63,8 @@ nnoremap <F8> <C-W>2+
 nmap <C-T>2 :call SetupTabulation(2)<CR>
 nmap <C-T>4 :call SetupTabulation(4)<CR>
 nnoremap <C-K>o :FufFile **/<CR>
+nnoremap <C-K>r :FufRenewCache<CR>
+nnoremap <C-K>g :Ack ''<left>
 
 
 if has("autocmd")
@@ -68,11 +72,14 @@ if has("autocmd")
 endif
 
 function! SetupTabulation(size)
-    let &sts = a:size
-    let &ts = a:size
-    let &sw = a:size
+  let &sts = a:size
+  let &ts = a:size
+  let &sw = a:size
 endfunction
 
+call SetupTabulation(2)
+
+set tags=.tags,.gemtags,tags
 
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
@@ -84,3 +91,4 @@ Bundle 'a.vim'
 Bundle 'netrw.vim'                                                                      
 Bundle 'L9'                                                                             
 Bundle 'FuzzyFinder'                                                                    
+Bundle 'ack.vim'
