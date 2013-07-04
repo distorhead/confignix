@@ -22,10 +22,6 @@ set ruler
 set colorcolumn=88
 set noea
 set mouse=a
-
-set softtabstop=4
-set tabstop=4
-set shiftwidth=4
 set expandtab
 
 set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,э',яz,чx,сc,мv,иb,тn,ьm,ю.,ё`,ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х{,Ъ},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Э\",ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,Б\<
@@ -62,13 +58,17 @@ nnoremap <F8> <C-W>2+
 "Tabulation switchers
 nmap <C-T>2 :call SetupTabulation(2)<CR>
 nmap <C-T>4 :call SetupTabulation(4)<CR>
-nnoremap <C-K>o :FufFile **/<CR>
-nnoremap <C-K>r :FufRenewCache<CR>
+nnoremap <C-K>o :CtrlP<CR>
 nnoremap <C-K>g :Ack ''<left>
+nnoremap <C-L>t :TagbarToggle<CR>
+nnoremap <C-L>e :NERDTreeToggle<CR>
+nnoremap <C-L>b :BufExplorerHorizontalSplit<CR>
+nnoremap <Leader>dw dt_
+nnoremap <Leader>cw ct_
 
 
 if has("autocmd")
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
 function! SetupTabulation(size)
@@ -78,6 +78,7 @@ function! SetupTabulation(size)
 endfunction
 
 call SetupTabulation(2)
+
 
 set tags=.tags,.gemtags,tags
 
@@ -90,5 +91,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'a.vim'                                                                          
 Bundle 'netrw.vim'                                                                      
 Bundle 'L9'                                                                             
-Bundle 'FuzzyFinder'                                                                    
 Bundle 'ack.vim'
+Bundle 'ctrlp.vim'
+Bundle 'majutsushi/tagbar'
+Bundle 'bufexplorer.zip'
