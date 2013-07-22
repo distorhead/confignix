@@ -58,15 +58,21 @@ nnoremap <F8> <C-W>2+
 "Tabulation switchers
 nmap <C-T>2 :call SetupTabulation(2)<CR>
 nmap <C-T>4 :call SetupTabulation(4)<CR>
+"C-K is for searches
 nnoremap <C-K>o :CtrlP<CR>
 nnoremap <C-K>g :Ack ''<left>
 nnoremap <C-K>t :tag 
+nnoremap <C-K>j :CtrlPTag<CR>
+"C-L is for views
 nnoremap <C-L>t :TagbarToggle<CR>
 nnoremap <C-L>e :NERDTreeToggle<CR>
 nnoremap <C-L>b :BufExplorerHorizontalSplit<CR>
 nnoremap <Leader>dw dt_
 nnoremap <Leader>cw ct_
-
+"Persistent copy-paste
+vnoremap <C-C> "wy
+nnoremap <C-V> "wp
+inoremap <C-V> <C-O>"wP
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
