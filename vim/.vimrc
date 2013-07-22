@@ -60,6 +60,7 @@ nmap <C-T>2 :call SetupTabulation(2)<CR>
 nmap <C-T>4 :call SetupTabulation(4)<CR>
 nnoremap <C-K>o :CtrlP<CR>
 nnoremap <C-K>g :Ack ''<left>
+nnoremap <C-K>t :tag 
 nnoremap <C-L>t :TagbarToggle<CR>
 nnoremap <C-L>e :NERDTreeToggle<CR>
 nnoremap <C-L>b :BufExplorerHorizontalSplit<CR>
