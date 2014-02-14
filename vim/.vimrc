@@ -23,6 +23,7 @@ set colorcolumn=88
 set noea
 set mouse=a
 set expandtab
+"set virtualedit=all
 
 set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,э',яz,чx,сc,мv,иb,тn,ьm,ю.,ё`,ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х{,Ъ},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Э\",ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,Б\<
 set iminsert=0
@@ -44,6 +45,8 @@ let mapleader = ","
 nnoremap <C-W>N :vnew<CR>
 map <F3> <ESC>:nohlsearch<CR>
 map <F12> <ESC>:!<CR>
+nnoremap <Leader>dw dt_
+nnoremap <Leader>cw ct_
 "Toggle cursor-at-center mode
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
 nnoremap <C-A>w :wall<CR>
@@ -59,20 +62,18 @@ nnoremap <F8> <C-W>2+
 nmap <C-T>2 :call SetupTabulation(2)<CR>
 nmap <C-T>4 :call SetupTabulation(4)<CR>
 "C-K is for searches
+nnoremap <C-K>e :e **/
 nnoremap <C-K>o :CtrlP<CR>
 nnoremap <C-K>g :Ack ''<left>
+nnoremap <C-K>f mw"wyiw`w:Ack '<C-R>w'<left>
 nnoremap <C-K>t :tag 
 nnoremap <C-K>j :CtrlPTag<CR>
 "C-L is for views
-nnoremap <C-L>t :TagbarToggle<CR>
-nnoremap <C-L>e :NERDTreeToggle<CR>
-nnoremap <C-L>b :BufExplorerHorizontalSplit<CR>
-nnoremap <Leader>dw dt_
-nnoremap <Leader>cw ct_
+nnoremap <C-L>t :NERDTreeToggle<CR>
 "Persistent copy-paste
-vnoremap <C-C> "wy
-nnoremap <C-V> "wp
-inoremap <C-V> <C-O>"wP
+noremap <C-Space> <C-@>
+vnoremap <C-@> "wy
+nnoremap <C-@> "wp
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -86,19 +87,13 @@ endfunction
 
 call SetupTabulation(2)
 
-
 set tags=.tags,.gemtags,tags
-
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 Bundle 'gmarik/vundle'                                                                  
 Bundle 'scrooloose/nerdtree'                                                            
 Bundle 'scrooloose/nerdcommenter'                                                       
-Bundle 'a.vim'                                                                          
 Bundle 'netrw.vim'                                                                      
-Bundle 'L9'                                                                             
 Bundle 'ack.vim'
 Bundle 'ctrlp.vim'
-Bundle 'majutsushi/tagbar'
-Bundle 'bufexplorer.zip'
