@@ -21,7 +21,7 @@ set showcmd
 set ruler
 set colorcolumn=88
 set noea
-set mouse=a
+set mouse=c
 set expandtab
 "set virtualedit=all
 
