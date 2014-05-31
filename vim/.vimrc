@@ -91,9 +91,8 @@ set tags=.tags,.gemtags,tags
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
-Bundle 'gmarik/vundle'                                                                  
-Bundle 'scrooloose/nerdtree'                                                            
-Bundle 'scrooloose/nerdcommenter'                                                       
-Bundle 'netrw.vim'                                                                      
+Bundle 'gmarik/vundle'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
 Bundle 'ack.vim'
 Bundle 'ctrlp.vim'
