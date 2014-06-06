@@ -72,11 +72,12 @@ nnoremap <C-K>j :CtrlPTag<CR>
 nnoremap <C-L>t :NERDTreeToggle<CR>
 "Persistent copy-paste
 noremap <C-Space> <C-@>
-vnoremap <C-@> "wy
+vnoremap <C-@> "wy :let @+=@w<CR>
 nnoremap <C-@> "wp
 
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+  autocmd VimLeave * call system("xsel -ib", getreg('+'))
 endif
 
 function! SetupTabulation(size)
