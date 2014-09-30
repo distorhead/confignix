@@ -29,6 +29,8 @@ set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,
 set iminsert=0
 set imsearch=0
 
+set wildmode=longest,list
+set wildmenu
 
 highlight lCursor guifg=White guibg=Black
 highlight Cursor  guifg=White guibg=Black
@@ -45,10 +47,9 @@ let mapleader = ","
 nnoremap <C-W>N :vnew<CR>
 map <F3> <ESC>:nohlsearch<CR>
 map <F12> <ESC>:!<CR>
-nnoremap <Leader>dw dt_
-nnoremap <Leader>cw ct_
+nnoremap <leader>o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs open<CR><CR>
 "Toggle cursor-at-center mode
-nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
+nnoremap <leader>zz :let &scrolloff=999-&scrolloff<CR>
 nnoremap <C-A>w :wall<CR>
 nnoremap <C-A>q :qall<CR>
 nnoremap * mw*`w
