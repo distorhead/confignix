@@ -23,7 +23,6 @@ set colorcolumn=88
 set noea
 set mouse=c
 set expandtab
-"set virtualedit=all
 
 set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,э',яz,чx,сc,мv,иb,тn,ьm,ю.,ё`,ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х{,Ъ},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Э\",ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,Б\<
 set iminsert=0
@@ -41,13 +40,13 @@ syntax on
 filetype on
 filetype plugin on
 
-
 let mapleader = ","
 
 nnoremap <C-W>N :vnew<CR>
 map <F3> <ESC>:nohlsearch<CR>
 map <F12> <ESC>:!<CR>
-nnoremap <leader>o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs open<CR><CR>
+nnoremap <C-G>t :!ctags -R -f .tags<CR><CR>
+nnoremap <C-G>T :!ctags -R -f .tags 
 "Toggle cursor-at-center mode
 nnoremap <leader>zz :let &scrolloff=999-&scrolloff<CR>
 nnoremap <C-A>w :wall<CR>
