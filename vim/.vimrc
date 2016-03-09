@@ -7,6 +7,7 @@ set hlsearch
 set incsearch
 set ignorecase
 set nobackup
+
 set nowritebackup
 set lz
 set nopaste
@@ -48,7 +49,7 @@ map <F12> <ESC>:!<CR>
 nnoremap <C-G>t :!ctags -R -f .tags<CR><CR>
 nnoremap <C-G>T :!ctags -R -f .tags 
 "Toggle cursor-at-center mode
-nnoremap <leader>zz :let &scrolloff=999-&scrolloff<CR>
+nnoremap <leader>zz :call ToggleCursorAtCenter()<CR>
 nnoremap <C-A>w :wall<CR>
 nnoremap <C-A>q :qall<CR>
 nnoremap * mw*`w
@@ -84,6 +85,10 @@ function! SetupTabulation(size)
   let &sts = a:size
   let &ts = a:size
   let &sw = a:size
+endfunction
+
+function! ToggleCursorAtCenter()
+  let &scrolloff=999-&scrolloff
 endfunction
 
 call SetupTabulation(2)
