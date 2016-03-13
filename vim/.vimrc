@@ -20,7 +20,7 @@ set clipboard=unnamed
 set pastetoggle=<F2>
 set showcmd
 set ruler
-set colorcolumn=88
+set colorcolumn=150
 set noea
 set mouse=c
 set expandtab
