@@ -92,6 +92,7 @@ endfunction
 function! SetupBackupDir(dir)
   let &backupdir = a:dir
   let &writebackup = 1
+  silent execute '!mkdir -p -m 0700 ' . a:dir
 endfunction
 
 call SetupTabulation(2)
