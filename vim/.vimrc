@@ -6,9 +6,7 @@ set showmatch
 set hlsearch
 set incsearch
 set ignorecase
-set nobackup
 
-set nowritebackup
 set lz
 set nopaste
 set ai
@@ -91,7 +89,13 @@ function! ToggleCursorAtCenter()
   let &scrolloff=999-&scrolloff
 endfunction
 
+function! SetupBackupDir(dir)
+  let &backupdir = a:dir
+  let &writebackup = 1
+endfunction
+
 call SetupTabulation(2)
+call SetupBackupDir("~/.vimbkp")
 
 set tags=.tags,.gemtags,tags
 set rtp+=~/.vim/bundle/vundle
