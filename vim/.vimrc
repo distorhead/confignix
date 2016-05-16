@@ -90,13 +90,14 @@ function! ToggleCursorAtCenter()
 endfunction
 
 function! SetupBackupDir(dir)
-  let &backupdir = a:dir
-  let &writebackup = 1
+  let &backup=1
+  let &writebackup=1
+  let &backupdir=a:dir
   silent execute '!mkdir -p -m 0700 ' . a:dir
 endfunction
 
 call SetupTabulation(2)
-call SetupBackupDir("~/.vimbkp")
+call SetupBackupDir($HOME . '/.vimbkp')
 
 set tags=.tags,.gemtags,tags
 set rtp+=~/.vim/bundle/vundle
