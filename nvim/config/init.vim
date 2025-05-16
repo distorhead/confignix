@@ -29,7 +29,11 @@ set ruler
 set colorcolumn=100
 " highlight ColorColumn guibg=#a0dca0
 " highlight Search termfg=white termbg=blue guifg=#ffffff guibg=#0000ff
-highlight ColorColumn ctermbg=lightgrey guibg=#D3D3D3
+highlight ColorColumn ctermbg=lightgrey guibg=#3c3836
+
+set signcolumn=yes
+highlight SignColumn ctermbg=lightgrey guibg=#3c3836
+
 
 " highlight lCursor guifg=White guibg=Black
 " highlight Cursor  guifg=White guibg=Black
@@ -40,7 +44,7 @@ set noea
 set mouse=a
 set expandtab
 
-set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,э',яz,чx,сc,мv,иb,тn,ьm,ю.,ё`,ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х{,Ъ},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Э\",ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,Б\<
+" set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,э',яz,чx,сc,мv,иb,тn,ьm,ю.,ё`,ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х{,Ъ},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Э\",ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,Б\<
 set iminsert=0
 set imsearch=0
 
@@ -57,9 +61,6 @@ let mapleader = ","
 nnoremap <C-W>N :vnew<CR>
 map <F3> <ESC>:nohlsearch<CR>
 map <F12> <ESC>:!<CR>
-" nnoremap <C-G>g :!ctags -R -f .tags -j --languages=Go<CR><CR>
-" nnoremap <C-G>T :!ctags -R -f .tags 
-" nnoremap <C-G>G :!ctags -R -f $HOME/.cache/go_global_tags /usr/local/go/src $HOME/go/pkg/mod
 
 "Toggle cursor-at-center mode
 nnoremap <leader>zz :call ToggleCursorAtCenter()<CR>
@@ -87,18 +88,27 @@ nnoremap <leader>e :edit $MYVIMRC<CR>
 "C-K is for searches
 nnoremap <C-K>e :e **/
 nnoremap <C-K>o :CtrlP<CR>
-nnoremap <C-K>g :grep ''<left>
 nnoremap <C-K>G :copen<CR>
-nnoremap <C-K>f mw"wyiw`w:grep '<C-R>w'<left>
 nnoremap <C-K>t :tag 
 nnoremap <C-K>j :CtrlPTag<CR>
 
+" set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case\ "$*"
+" set grepformat=%f:%l:%c:%m
+
+highlight Search ctermfg=NONE ctermbg=LightGreen gui=NONE guibg=#add8e6 guifg=NONE
+
+nnoremap <C-K>g :grep ''<left>
+nnoremap <C-K>f mw"wyiw`w:grep '<C-R>w'<left>
+
 "C-L is for views
 nnoremap <C-L>t :NERDTreeToggle<CR>
-"Persistent copy-paste
+
+"Copy-paste keymaps
 noremap <C-T>y <C-@>
 vnoremap <C-@> "wy :let @+=@w<CR>
 nnoremap <C-@> "wp
+nnoremap <leader>F :let @+ = expand('%:p')<CR>:echo "Copied: " . expand('%:p')<CR>
+
 
 if has("autocmd")
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -138,6 +148,7 @@ require('packer').startup(function(use)
   use 'doums/rg.nvim'
   use 'altercation/vim-colors-solarized'
   use 'neovim/nvim-lspconfig'
+  use 'ivanesmantovich/xkbswitch.nvim'
 end)
 
 require('lspconfig').gopls.setup {
@@ -151,4 +162,66 @@ require('lspconfig').gopls.setup {
     },
   },
 }
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = true }),
+  callback = function(args)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = vim.api.nvim_create_augroup("format_on_save", { clear = true }),
+      buffer = args.buf,
+      callback = function()
+        vim.lsp.buf.format({ async = false, id = args.data.client_id })
+      end,
+    })
+  end,
+})
+
+-- Helper function to organize imports via LSP code action
+local function organize_imports(timeout_ms)
+  local params = vim.lsp.util.make_range_params()
+  params.context = { only = { "source.organizeImports" } }
+  local results = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms or 1000)
+  if not results then return end
+  for _, res in pairs(results) do
+    for _, r in pairs(res.result or {}) do
+      if r.edit then
+        local enc = (vim.lsp.get_client_by_id(r.client_id) or {}).offset_encoding or "utf-16"
+        vim.lsp.util.apply_workspace_edit(r.edit, enc)
+      elseif r.command then
+        vim.lsp.buf.execute_command(r.command)
+      end
+    end
+  end
+end
+
+-- Autocommand group for Go formatting and imports
+local go_fmt_grp = vim.api.nvim_create_augroup("GoFormatImports", { clear = true })
+
+-- On save: format and organize imports
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = go_fmt_grp,
+  pattern = "*.go",
+  callback = function()
+    organize_imports(1000)
+    vim.lsp.buf.format({ async = false })
+  end,
+})
+
+-- On leaving insert mode: format and organize imports
+vim.api.nvim_create_autocmd("InsertLeave", {
+  group = go_fmt_grp,
+  pattern = "*.go",
+  callback = function()
+    organize_imports(1000)
+    vim.lsp.buf.format({ async = false })
+  end,
+})
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    vim.bo[args.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+  end,
+})
+
+require('xkbswitch').setup()
 EOF
